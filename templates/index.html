@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DisasterVision | Satellite Disaster Intelligence</title>
+<link rel="stylesheet" href="/static/css/style.css?v=20261002b">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><b>DV</b><div><strong>DisasterVision</strong><span>Satellite Intelligence</span></div></div>
+  <div class="state"><i></i> Local analysis system</div>
+</header>
+
+<main class="page">
+<section class="intro hero-intro">
+  <div class="hero-copy">
+    <p class="eyebrow">SATELLITE DISASTER INTELLIGENCE</p>
+    <h1>Understand change.<br><span>Plan for the future.</span></h1>
+    <p>Compare stored satellite observations for a selected location and estimate future change using the project prediction model.</p>
+  </div>
+  <div class="hero-globe" aria-label="Interactive Earth globe">
+    <canvas id="globe" width="320" height="280"></canvas>
+  </div>
+</section>
+
+<section class="workspace">
+  <div class="panel dataset-panel">
+    <div class="heading"><div><small>01</small><h2>Current satellite image</h2></div><em>SERVER DATA</em></div>
+    <div class="server-image-card" id="serverImageCard">
+      <div class="server-icon">◎</div>
+      <h3>Automatic satellite image</h3>
+      <p>Select a location on the right. The latest historical image in that server folder is used automatically for the analysis.</p>
+      <div class="baseline-preview"><img id="baselinePreview" alt="Latest server satellite image"></div>
+      <div class="baseline-line"><strong id="baselineName">Select a location</strong><span id="baselineYear">No image selected</span></div>
+    </div>
+    <div id="uploadMessage" class="message"></div>
+  </div>
+
+  <div class="panel settings">
+    <div class="heading"><div><small>02</small><h2>Analysis settings</h2></div></div>
+
+    <label for="disasterInput">Disaster</label>
+    <select id="disasterInput" aria-label="Disaster"><option value="GLACIER" selected>GLACIER</option></select>
+
+    <label for="locationInput">Location</label>
+    <select id="locationInput" aria-label="Location"><option value="">Loading locations...</option></select>
+
+    <label for="yearInput">Future year</label>
+    <input id="yearInput" type="number" min="1900" max="2100" step="1" placeholder="enter the year">
+    <p class="help">Enter a year after the latest historical observation.</p>
+    <button id="analyzeBtn" class="analyze" type="button"><span>Run analysis</span><b>→</b></button>
+    <div id="progress"><i></i></div>
+    <p id="status" class="status">GLACIER is selected. Select a location and enter a future year.</p>
+  </div>
+</section>
+
+<section class="panel results">
+  <div class="heading"><div><small>03</small><h2>Analysis results</h2></div><div class="results-head-right"><div class="prediction-year"><span>Predicted disaster year</span><strong id="predictedYearTop">—</strong></div><span id="riskBadge" class="risk neutral">Awaiting analysis</span></div></div>
+  <div class="metrics">
+    <article><span>Future year</span><strong id="futureYear">—</strong></article>
+    <article><span>Predicted change</span><strong id="predictedChange">—</strong></article>
+    <article><span>Risk level</span><strong id="riskMetric">—</strong></article>
+  </div>
+  <div class="resultgrid">
+    <div><h3>Historical comparison</h3><div class="tablewrap"><table><thead><tr><th>Year</th><th>Change to latest image</th></tr></thead><tbody id="historyBody"><tr><td colspan="2">No analysis performed yet.</td></tr></tbody></table></div></div>
+    <div><h3>Mathematical prediction</h3><pre id="equation">The prediction equation will appear here after analysis.</pre></div>
+  </div>
+  <div class="disaster-window">
+    <div><span>Estimated disaster-risk window</span><strong id="windowYears">—</strong><p id="windowMessage">Select a location and run the analysis.</p></div>
+    <div class="window-meta"><div><small>Annual change rate</small><b id="annualRate">—</b></div><div><small>Modeled high-risk year</small><b id="highRiskYear">—</b></div></div>
+  </div>
+</section>
+<footer><span>DisasterVision</span><span>Satellite image comparison · future risk estimation</span></footer>
+</main>
+<script src="/static/js/app.js?v=20261002b"></script>
+</body>
+</html>
